@@ -184,9 +184,9 @@ import {
                                             <FormLabel>Selecione a atividade</FormLabel>
                                             <Select onChange={(e) => setCargo(e.target.value)}>
                                                 <option value=''></option>
-                                                <option value='Cargo 1'>Cargo 1</option>
-                                                <option value='Cargo 2'>Cargo 2</option>
-                                                <option value='Cargo 3'>Cargo 3</option>
+                                                <option value='Atividade 1'>Atividade 1</option>
+                                                <option value='Atividade 2'>Atividade 2</option>
+                                                <option value='Atividade 3'>Atividade 3</option>
                                             </Select>
                                     </Box>
                             </Grid>
@@ -195,9 +195,9 @@ import {
                                             <FormLabel>Selecione o EPI</FormLabel>
                                             <Select onChange={(e) => setCargo(e.target.value)}>
                                                 <option value=''></option>
-                                                <option value='Cargo 1'>Cargo 1</option>
-                                                <option value='Cargo 2'>Cargo 2</option>
-                                                <option value='Cargo 3'>Cargo 3</option>
+                                                <option value='Calçado de segurança'>Calçado de segurança</option>
+                                                <option value='Capacete'>Capacete</option>
+                                                <option value='Luva'>Luva</option>
                                             </Select>
                                     </Box>
                                     <Box mr='4'>
