@@ -1,3 +1,4 @@
+import React from "react";
 import '/node_modules/font-awesome/css/font-awesome.min.css'; 
 import { FaBuilding } from "react-icons/fa";
 import '/styles.css';
@@ -20,9 +21,16 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ModalComp from "./components/ModalComp";
+import { UncontrolledCollapse, CardBody, Card, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styled from "styled-components"
+
+
 
 const App = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose} = useDisclosure();
+  const [isChecked, setChecked] = React.useState(true);
+
   const [data, setData] = useState([]);
   const [dataEdit, setDataEdit] = useState({});
 
@@ -31,6 +39,12 @@ const App = () => {
     lg: false,
   });
 
+
+  const handleCheck = () => {
+    setChecked((prevState) => !prevState)
+    console.log('is checked' , isChecked);
+  }
+ 
   useEffect(() => {
     const db_costumer = localStorage.getItem("cad_cliente")
       ? JSON.parse(localStorage.getItem("cad_cliente"))
@@ -56,15 +70,11 @@ const App = () => {
       bg='#f2f2f2'
       
     >
-    
-    
-
-    
-              
       
     
     <Grid templateColumns='repeat(1, 1fr)' p='4' m='0'>
-    
+        
+
       <Grid templateColumns='repeat(9, 1fr)' gap={6} bg='#fff' align='center' p='10' mb='10' w='100%' borderRadius='10'>
 
 
@@ -111,9 +121,6 @@ const App = () => {
                               Nome
                             </Th>
                             <Th maxW={isMobile ? 5 : 100} fontSize="20px">
-                              E-Mail
-                            </Th>
-                            <Th maxW={isMobile ? 5 : 100} fontSize="20px">
                               Cpf
                             </Th>
                             <Th maxW={isMobile ? 5 : 100} fontSize="20px">
@@ -127,7 +134,6 @@ const App = () => {
                           {data.map(({ name, email, cpf, rg, nascimento, sexo, ativo, cargo }, index) => (
                             <Tr key={index} cursor="pointer " _hover={{ bg: "gray.100" }}>
                               <Td maxW={isMobile ? 5 : 100}>{name}</Td>
-                              <Td maxW={isMobile ? 5 : 100}>{email}</Td>
                               <Td maxW={isMobile ? 5 : 100}>{cpf}</Td>
                               <Td maxW={isMobile ? 5 : 100}>{ativo}</Td>
                               <Td p={0}>

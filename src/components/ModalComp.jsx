@@ -37,9 +37,10 @@ import {
     Grid, 
     GridItem
   } from "@chakra-ui/react";
-  import { useState, ReactNode, useRef } from "react";
+  import React, { useState, ReactNode, useRef} from "react";
   
   const ModalComp = ({ data, setData, dataEdit, isOpen, onClose }) => {
+    const [isChecked, setChecked] = React.useState(true);
     const [name, setName] = useState(dataEdit.name || "");
     const [email, setEmail] = useState(dataEdit.email || "");
     const [cpf, setCpf] = useState(dataEdit.cpf || "");
@@ -48,6 +49,11 @@ import {
     const [sexo, setSexo] = useState(dataEdit.sexo || "");
     const [ativo, setAtivo] = useState(dataEdit.ativo || "");
     const [cargo, setCargo] = useState(dataEdit.cargo || "");
+
+    const handleCheck = () => {
+        setChecked((prevState) => !prevState)
+        console.log('is checked' , isChecked);
+    }
   
     const handleSave = () => {
       if (!name || !email) return;
@@ -171,12 +177,13 @@ import {
                         </Box>
                         <Box mb='6'>
                                 <Checkbox 
-                                    value="Ativo"
-                                    onChange={(e) => setAtivo(e.target.value)}
+                                    value='Ativo'
+                                    onChange={handleCheck}
+                                    
                                 > O trabalhador não usa EPI. </Checkbox>
                         </Box>
 
-
+                {isChecked && (
                 <Container maxW='2xl' bg='#fff' p='4' border='solid 1px #649fbf' borderRadius={10}>
 
                             <Grid templateColumns='repeat(1, 1fr)'>
@@ -214,11 +221,14 @@ import {
                                     </Box>
                             </Grid>
                 </Container>
+            )}
+            {isChecked && (
                 <Button colorScheme="white" color="#649fbf" border="solid 1px #649fbf" width="100%" mt='5' >Adicionar outra atividade</Button>
+            )}
 
-
-                </Container>
-                <Container maxW='2xl' bg='#fff' p='4' border='solid 1px #649fbf' borderRadius={10}>
+            </Container>
+            {isChecked && (
+            <Container maxW='2xl' bg='#fff' p='4' border='solid 1px #649fbf' borderRadius={10}>
                 <Box>
                     <FormLabel>Adicione Atestado de Saúde (opcional):</FormLabel>
                     <Input
@@ -254,7 +264,8 @@ import {
                     )}
                     </FileUpload>
                 </Box>
-                </Container>
+            </Container>
+            )}
 
                 <Box>
                   <FormLabel>E-mail</FormLabel>
